@@ -1,0 +1,14 @@
+@import "~materialize-css/dist/css/materialize.min.css";
+
+ul {
+    display: flex;
+    justify-content: space-around;
+}
+li {
+    cursor: pointer;
+}
+
+.shower-forecast{
+    display: flex;
+    justify-content: space-around;
+}
