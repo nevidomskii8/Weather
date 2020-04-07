@@ -15,7 +15,6 @@ function App() {
 	const getRequest = async () => {
 		try {
 			const respons = await axios.get('http://localhost:5000/weather/getWeather')
-			// const respons = await axios.get('https://api.darksky.net/forecast/c3f5199a4cecb62000b325a1c9f191a6/46.4825,30.7233?lang=ru&units=si')
 			setState(respons.data)
 			setCheckLoad(true)
 			

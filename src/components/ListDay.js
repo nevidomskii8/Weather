@@ -10,9 +10,17 @@ export const ListDay = props => {
     return (
         dailyArray.map((day, index) => {
             if (day === moment().format('dddd')) {
-                return <li onClick={props.onClick} key={index} id={index} className="li-active">{objNameDays.Today[+props.lang]}</li>
+                return <li  key={index}  className="li-active">
+                            <button onClick={props.onClick} id={index} className="btn">
+                                {objNameDays.Today[+props.lang]}
+                            </button>
+                        </li>
             }
-            return (<li onClick={props.onClick} key={index} id={index}>{objNameDays[day][+props.lang]}</li>)
+            return (<li  key={index} >
+                        <button onClick={props.onClick} id={index} className="btn">
+                            {objNameDays[day][+props.lang]}
+                        </button>
+                    </li>)
         })
     )
 }
