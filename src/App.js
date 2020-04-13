@@ -1,67 +1,57 @@
 import React, { useEffect, useState } from 'react'
-import axios from 'axios'
 import { ListDay } from './components/ListDay'
 import { CurrentWeather } from './components/CurrentWeather'
 import { DayWeather } from './components/DayWeather'
-
+import { useDispatch, useSelector } from 'react-redux'
+import { fetchWeather } from './redux/action'
 
 
 function App() {
-	const [state, setState] = useState({}),
+	const loading = useSelector(state => state.loading),
+	 reducerProps = useSelector(state => state.stateReducer),
+     dispatch = useDispatch(),
 	 [showDay, setShowDay] = useState(0),
-	 [checkLoad, setCheckLoad] = useState(false),
 	 [toggleLang, setToggleLang] = useState(false)
 
-	const getRequest = async () => {
-		try {
-			const respons = await axios.get('http://localhost:5000/weather/getWeather')
-			setState(respons.data)
-			setCheckLoad(true)
-			
-		} catch (e) { 
-			setCheckLoad(true)
-		}
-	}
 
 	useEffect(() => {
-		getRequest()
-	}, [])
-
-	const toggleLanguage = () => {
-		setToggleLang(!toggleLang)
-	}
-
-	const dailyHandler = event => {
-		setShowDay(event.target.id)
-	}
+		dispatch(fetchWeather())
+	}, [dispatch])
 
 	return (
-		!checkLoad ?
+		loading ?
 			<div className="progress">
-				<div className="indeterminate"></div>
+				<div className="indeterminate"/>
 			</div> :
 			<div className="container">
 				<nav>
 					<ul>
 						<ListDay
 							lang={toggleLang}
-							onClick={dailyHandler}
-							state={state}
+							onClick={event => setShowDay(event.target.id)}
+							state={reducerProps}
 						/>
 					</ul>
 				</nav>
 				<button
-					onClick={toggleLanguage}
+					onClick={() => {
+						console.log(reducerProps)
+						setToggleLang(!toggleLang)}}
 					className="btn"
 				>
 					{toggleLang ? 'Ru' : 'Eng'}
 				</button>
 				<div className="shower-forecast">
-					{checkLoad ? <CurrentWeather lang={toggleLang} state={state} /> : null}
-					{checkLoad && state.daily ? <DayWeather lang={toggleLang} state={state.daily.data[showDay]} /> : 'ERROR'}
+					{!loading ? <CurrentWeather lang={toggleLang} state={reducerProps} /> : null}
+					{
+						!loading && reducerProps.daily 
+						? <DayWeather lang={toggleLang} state={reducerProps.daily.data[showDay]} /> 
+						: 'ERROR'
+					}
 				</div>
 			</div>
-	);
+	); 
 }
+
 
 export default App;
