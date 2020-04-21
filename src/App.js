@@ -3,23 +3,23 @@ import { ListDay } from './components/ListDay'
 import { CurrentWeather } from './components/CurrentWeather'
 import { DayWeather } from './components/DayWeather'
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchWeather } from './redux/action'
+import { fetchWeather, toggleEng, toggleRu } from './redux/action'
 
 
 function App() {
-	const loading = useSelector(state => state.loading),
-	 reducerProps = useSelector(state => state.stateReducer),
+	const reducerProps = useSelector(state => state),
      dispatch = useDispatch(),
 	 [showDay, setShowDay] = useState(0),
-	 [toggleLang, setToggleLang] = useState(false)
-
+	 appState = reducerProps.appDate.stateReducer,
+	 toggleLang = reducerProps.toggleLang,
+	 stateLoading = reducerProps.appDate.loading
 
 	useEffect(() => {
 		dispatch(fetchWeather())
 	}, [dispatch])
 
 	return (
-		loading ?
+		stateLoading ?
 			<div className="progress">
 				<div className="indeterminate"/>
 			</div> :
@@ -29,23 +29,29 @@ function App() {
 						<ListDay
 							lang={toggleLang}
 							onClick={event => setShowDay(event.target.id)}
-							state={reducerProps}
+							state={appState}
 						/>
 					</ul>
 				</nav>
 				<button
 					onClick={() => {
-						console.log(reducerProps)
-						setToggleLang(!toggleLang)}}
+						toggleLang === 0 
+						? dispatch(toggleEng())
+						: dispatch(toggleRu())
+					}}
 					className="btn"
 				>
-					{toggleLang ? 'Ru' : 'Eng'}
+					{toggleLang ? 'Ru' : 'Eng'}	
 				</button>
 				<div className="shower-forecast">
-					{!loading ? <CurrentWeather lang={toggleLang} state={reducerProps} /> : null}
+					{	
+						!stateLoading 
+						? <CurrentWeather lang={toggleLang} state={appState} /> 
+						: null
+					}
 					{
-						!loading && reducerProps.daily 
-						? <DayWeather lang={toggleLang} state={reducerProps.daily.data[showDay]} /> 
+						!stateLoading && appState.daily 
+						? <DayWeather lang={toggleLang} state={appState.daily.data[showDay]} /> 
 						: 'ERROR'
 					}
 				</div>

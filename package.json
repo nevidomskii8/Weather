@@ -20,7 +20,7 @@
     "redux-thunk": "^2.3.0"
   },
   "scripts": {
-    "start": "concurrently \"react-scripts start\" \"node ./server/index.js\"",
+    "start": "concurrently \"react-scripts start\" \"node ./server/index.js\" --open",
     "server": "node ./server/index.js",
     "build": "react-scripts build && node",
     "test": "react-scripts test && node",

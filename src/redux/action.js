@@ -1,4 +1,4 @@
-import {FETCH_RESP, HIDE_LOADER, SHOW_LOADER} from './types'
+import {FETCH_RESP, HIDE_LOADER, SHOW_LOADER, LANG_ENG, LANG_RU} from './types'
 
 export function showLoader() {
     return {
@@ -8,6 +8,18 @@ export function showLoader() {
 export function hideLoader() {
     return {
         type: HIDE_LOADER
+    }
+}
+
+export function toggleEng() {
+    return {
+        type: LANG_ENG
+    }
+}
+
+export function toggleRu() {
+    return {
+        type: LANG_RU
     }
 }
 
