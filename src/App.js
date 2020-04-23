@@ -8,11 +8,11 @@ import { fetchWeather, toggleEng, toggleRu } from './redux/action'
 
 function App() {
 	const reducerProps = useSelector(state => state),
-     dispatch = useDispatch(),
-	 [showDay, setShowDay] = useState(0),
 	 appState = reducerProps.appDate.stateReducer,
 	 toggleLang = reducerProps.toggleLang,
-	 stateLoading = reducerProps.appDate.loading
+	 stateLoading = reducerProps.appDate.loading,
+     dispatch = useDispatch(),
+	 [showDay, setShowDay] = useState(0)
 
 	useEffect(() => {
 		dispatch(fetchWeather())
@@ -26,11 +26,7 @@ function App() {
 			<div className="container">
 				<nav>
 					<ul>
-						<ListDay
-							lang={toggleLang}
-							onClick={event => setShowDay(event.target.id)}
-							state={appState}
-						/>
+						<ListDay onClick={event => setShowDay(event.target.id)}/>
 					</ul>
 				</nav>
 				<button
@@ -46,12 +42,12 @@ function App() {
 				<div className="shower-forecast">
 					{	
 						!stateLoading 
-						? <CurrentWeather lang={toggleLang} state={appState} /> 
+						? <CurrentWeather /> 
 						: null
 					}
 					{
 						!stateLoading && appState.daily 
-						? <DayWeather lang={toggleLang} state={appState.daily.data[showDay]} /> 
+						? <DayWeather state={appState.daily.data[showDay]} /> 
 						: 'ERROR'
 					}
 				</div>

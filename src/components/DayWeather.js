@@ -1,9 +1,10 @@
 import React from 'react'
 import { targetValueDaily } from '../container/DataArrays'
 import moment from 'moment'
+import { useSelector } from 'react-redux'
 
 export const DayWeather = props => {
-
+	const reducerProps = useSelector(state => state)
     const currentState = {...props.state}
     currentState.time = moment(currentState.time * 1000).format('ll')
     currentState.sunriseTime = moment(currentState.sunriseTime * 1000).format('LTS')
@@ -17,7 +18,7 @@ export const DayWeather = props => {
                         key={index}
                         className="collection-item"
                     >
-                        {targetValueDaily[key][+props.lang]}
+                        {targetValueDaily[key][reducerProps.toggleLang]}
                         <span className="badge">
                             {currentState[key]}
                         </span>
