@@ -1,4 +1,4 @@
-import {FETCH_RESP, HIDE_LOADER, SHOW_LOADER, LANG_ENG, LANG_RU} from './types'
+import {FETCH_RESP, HIDE_LOADER, SHOW_LOADER, LANG_ENG, LANG_RU, DAY_ID} from './types'
 
 export function showLoader() {
     return {
@@ -20,6 +20,13 @@ export function toggleEng() {
 export function toggleRu() {
     return {
         type: LANG_RU
+    }
+}
+
+export function toggleDay(id) {
+    return {
+        type: DAY_ID,
+        payload: id
     }
 }
 

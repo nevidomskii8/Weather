@@ -1,9 +1,10 @@
-import { HIDE_LOADER, SHOW_LOADER, FETCH_RESP, LANG_ENG, LANG_RU} from "./types"
+import { HIDE_LOADER, SHOW_LOADER, FETCH_RESP, LANG_ENG, LANG_RU, DAY_ID} from "./types"
 import { combineReducers } from "redux"
 
 const initialState = {
     loading: false,
-    stateReducer: []
+    stateReducer: [],
+    dayId: 0
 }
 
 export const appReducer = (state = initialState, action) => {
@@ -14,7 +15,9 @@ export const appReducer = (state = initialState, action) => {
         return {...state, loading: false}
         case FETCH_RESP:
             return {...state, stateReducer: action.payload}
-            default: return state
+        case DAY_ID:
+            return {...state, dayId: action.payload}
+        default: return state
         }
     }
     
@@ -27,6 +30,8 @@ function toggleReducer(state = 0, action) {
         default: return state
         }
 }
+
+
 
 export const rootReducer = combineReducers({
     toggleLang: toggleReducer,

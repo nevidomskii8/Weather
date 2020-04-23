@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { ListDay } from './components/ListDay'
 import { CurrentWeather } from './components/CurrentWeather'
 import { DayWeather } from './components/DayWeather'
@@ -11,22 +11,21 @@ function App() {
 	 appState = reducerProps.appDate.stateReducer,
 	 toggleLang = reducerProps.toggleLang,
 	 stateLoading = reducerProps.appDate.loading,
-     dispatch = useDispatch(),
-	 [showDay, setShowDay] = useState(0)
+     dispatch = useDispatch()
 
 	useEffect(() => {
 		dispatch(fetchWeather())
 	}, [dispatch])
 
 	return (
-		stateLoading ?
-			<div className="progress">
+			stateLoading 
+			? <div className="progress">
 				<div className="indeterminate"/>
-			</div> :
-			<div className="container">
+			</div> 
+			: <div className="container">
 				<nav>
 					<ul>
-						<ListDay onClick={event => setShowDay(event.target.id)}/>
+						<ListDay/>
 					</ul>
 				</nav>
 				<button
@@ -47,7 +46,7 @@ function App() {
 					}
 					{
 						!stateLoading && appState.daily 
-						? <DayWeather state={appState.daily.data[showDay]} /> 
+						? <DayWeather /> 
 						: 'ERROR'
 					}
 				</div>
