@@ -5,33 +5,37 @@ import { useSelector, useDispatch } from 'react-redux'
 import { toggleDay } from '../redux/action'
 
 
-export const ListDay = props => {
-	const reducerProps = useSelector(state => state.toggleLang),
+export const ListDay = () => {
+	const reducerProps = useSelector(state => state),
      dispatch = useDispatch(),
      createDay = day => moment().add(day, 'days').calendar().split(' ')[0],
-     dailyArray = [moment().format('dddd'), createDay(1), createDay(2), createDay(3), createDay(4), createDay(5), createDay(6)]
-    return (
-        dailyArray.map((day, index) => {
+     dailyArray = [moment().format('dddd'), createDay(1), createDay(2),
+                 createDay(3), createDay(4), createDay(5), createDay(6)]
+
+     return (
+        dailyArray.map((day, index) => {            
             if (day === moment().format('dddd')) {
-                return <li  key={index}  className="li-active">
-                            <button 
-                                onClick={event => {dispatch(toggleDay(event.target.id))}} 
-                                id={index} 
-                                className="btn"
-                            >
-                                {objNameDays.Today[reducerProps]}
-                            </button>
-                        </li>
+                return (
+                    <div 
+                    key={index}
+                    onClick={event => {dispatch(toggleDay(event.target.id))}} 
+                    id={index} 
+                    className="listDay"
+                >
+                    {objNameDays.Today[reducerProps.toggleLang]}
+                </div>  
+                )
             }
-            return (<li  key={index} >
-                        <button 
-                            onClick={event => {dispatch(toggleDay(event.target.id))}} 
-                            id={index} 
-                            className="btn"
-                        >
-                            {objNameDays[day][reducerProps]}
-                        </button>
-                    </li>)
+            return (
+                <div 
+                    key={index}
+                    onClick={event => {dispatch(toggleDay(event.target.id))}} 
+                    id={index} 
+                    className="listDay"
+                >
+                    {objNameDays[day][reducerProps.toggleLang]}
+                </div>
+                    )
         })
     )
 }

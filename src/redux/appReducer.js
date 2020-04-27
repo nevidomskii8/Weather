@@ -31,8 +31,6 @@ function toggleReducer(state = 0, action) {
         }
 }
 
-
-
 export const rootReducer = combineReducers({
     toggleLang: toggleReducer,
     appDate: appReducer
