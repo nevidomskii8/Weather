@@ -1,11 +1,7 @@
 @import "~materialize-css/dist/css/materialize.min.css";
 
-ul {
-    display: flex;
-    justify-content: space-around;
-}
-li {
-    cursor: pointer;
+.container {
+    background: linear-gradient(270deg, #cef2fa 0%, #59bfef 100%);
 }
 
 .shower-forecast{
@@ -17,18 +13,21 @@ li {
     text-align: center;
     width: calc(100%/7);
     border: solid 1px #bebebe;
-    background-color: #03a9f4;
     cursor: pointer;
 }
 
+
 .collection {
-    max-width: 100%;
-    height: 15rem;
+    display: flex;
+    flex-direction: column;
     background-repeat: no-repeat;
-    text-align: center;
+    margin: 0;
+    align-items: flex-end;
 }
 
 .collection>div {
+    width: 40%;
+    text-align: left;
     margin: 1rem;
     color: green
 }
