@@ -12,8 +12,6 @@ export const CurrentWeather = () => {
      toggleLang = reducerProps.toggleLang,
      img = iconsArray[current.icon],
      dispatch = useDispatch()
-
-    //  console.log(img)
      
     current.time = moment(current.time * 1000).format('LTS')
     return (

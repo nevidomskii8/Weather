@@ -10,7 +10,9 @@ export const ListDay = () => {
      dispatch = useDispatch(),
      createDay = day => moment().add(day, 'days').calendar().split(' ')[0],
      dailyArray = [moment().format('dddd'), createDay(1), createDay(2),
-                 createDay(3), createDay(4), createDay(5), createDay(6)]
+                 createDay(3), createDay(4), createDay(5), createDay(6)],
+     cls = 'listDay active',
+     checkId = +reducerProps.appDate.dayId
 
      return (
         dailyArray.map((day, index) => {            
@@ -20,7 +22,7 @@ export const ListDay = () => {
                     key={index}
                     onClick={event => {dispatch(toggleDay(event.target.id))}} 
                     id={index} 
-                    className="listDay"
+                    className={index === checkId ? cls : 'listDay'}
                 >
                     {objNameDays.Today[reducerProps.toggleLang]}
                 </div>  
@@ -31,7 +33,7 @@ export const ListDay = () => {
                     key={index}
                     onClick={event => {dispatch(toggleDay(event.target.id))}} 
                     id={index} 
-                    className="listDay"
+                    className={index === checkId ? cls : 'listDay'}
                 >
                     {objNameDays[day][reducerProps.toggleLang]}
                 </div>

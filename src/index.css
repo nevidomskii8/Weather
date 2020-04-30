@@ -12,10 +12,14 @@
 .listDay {
     text-align: center;
     width: calc(100%/7);
-    border: solid 1px #bebebe;
     cursor: pointer;
 }
 
+.listDay.active {
+box-shadow: 3px 3px 3px rgba(0, 0, 255, .2);
+background: #2196f3;
+border-radius: 10%
+}
 
 .collection {
     display: flex;
