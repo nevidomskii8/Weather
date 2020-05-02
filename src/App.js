@@ -5,34 +5,33 @@ import { DayWeather } from './components/DayWeather'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchWeather} from './redux/action'
 
-
 function App() {
 	const reducerProps = useSelector(state => state),
 	 appState = reducerProps.appDate.stateReducer,
 	 stateLoading = reducerProps.appDate.loading,
-     dispatch = useDispatch()
+	 coordinates = reducerProps.appDate.selectedCity,
+	 dispatch = useDispatch()
+
 	useEffect(() => {
-		dispatch(fetchWeather())
-	}, [dispatch])
+		dispatch(fetchWeather(coordinates))
+	}, [dispatch, coordinates])
 
 	return (
 		stateLoading 
 			? <div className="progress">
 				<div className="indeterminate"/>
-			</div> 
-			:<div className="container">
-				<CurrentWeather />
+			  </div> 
+			: <div className="container">
+					<CurrentWeather />
 				<div className="dayContainer">
-					<ListDay/>
+					<ListDay />
 				</div>
-					
-					{
-						!stateLoading && appState.daily 
-						? <DayWeather /> 
-						: 'ERROR'
-					}
-				
-			</div>
+				{	
+					!stateLoading && appState.daily 
+					? <DayWeather /> 
+					: 'ERROR'
+				}
+			  </div>
 	); 
 }
 

@@ -9,8 +9,9 @@ import thunk from 'redux-thunk';
 import { rootReducer } from './redux/appReducer';
 
 const store = createStore(rootReducer, compose(
-  applyMiddleware(thunk),
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  applyMiddleware(thunk), window.REDUX_DEVTOOLS_EXTENSION
+  ? window.REDUX_DEVTOOLS_EXTENSION()
+  : f => f
 ))
 
 

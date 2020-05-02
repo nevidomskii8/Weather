@@ -5,3 +5,4 @@ export const HIDE_LOADER = 'HIDE_LOADER'
 export const LANG_RU = 'LANG_RU'
 export const LANG_ENG = 'LANG_ENG'
 export const DAY_ID = 'DAY_ID'
+export const CITY = "CITY"

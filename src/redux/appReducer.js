@@ -1,10 +1,11 @@
-import { HIDE_LOADER, SHOW_LOADER, FETCH_RESP, LANG_ENG, LANG_RU, DAY_ID} from "./types"
+import {CITY, HIDE_LOADER, SHOW_LOADER, FETCH_RESP, LANG_ENG, LANG_RU, DAY_ID} from "./types"
 import { combineReducers } from "redux"
 
 const initialState = {
     loading: false,
     stateReducer: [],
-    dayId: 0
+    dayId: 0,
+    selectedCity: '46.4825,30.7233'
 }
 
 export const appReducer = (state = initialState, action) => {
@@ -17,6 +18,8 @@ export const appReducer = (state = initialState, action) => {
             return {...state, stateReducer: action.payload}
         case DAY_ID:
             return {...state, dayId: action.payload}
+        case CITY: 
+            return {...state, selectedCity: action.payload}
         default: return state
         }
     }

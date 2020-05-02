@@ -13,7 +13,12 @@ export const targetValueCurrent = {
     windSpeed:['Скорость ветра: ', 'Wind speed: '], windGust:['Порывы ветра: ', 'Wind gust: ']
 }
 
-export const objNameDays = {Monday: ['Понедельник', 'Monday'], Tuesday: ['Вторник', 'Tuesday'], Wednesday: ['Среда', 'Wednesday'], Thursday: ['Четверг','Thursday'], Friday: ['Пятница', 'Friday'], Saturday: ['Субота','Saturday'],
+export const objNameDays = {
+    Monday: ['Понедельник', 'Monday'], Tuesday: ['Вторник', 'Tuesday'], Wednesday: ['Среда', 'Wednesday'],
+    Thursday: ['Четверг','Thursday'], Friday: ['Пятница', 'Friday'], Saturday: ['Субота','Saturday'],
     Sunday: ['Воскресенье', 'Sunday'], Today: ['Сегодня', 'Today'], Tomorrow: ['Завтра', 'Tomorrow'],
 }
 
+export const dataCities = {
+    'odessa': '46.4825,30.7233', 'kiev': '50.4501,30.5234', 'kharkiv': '49.9935,36.2304', 'lviv': '49.8397,24.0297'
+}

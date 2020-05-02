@@ -7,6 +7,8 @@ const cors = require('cors');
 
 const httpServer = http.createServer(app);
 
+app.use(express.json({extended: true}))
+
 app.use(bodyParser.urlencoded({
     limit: "50mb",
     extended: true

@@ -1,4 +1,6 @@
-import {FETCH_RESP, HIDE_LOADER, SHOW_LOADER, LANG_ENG, LANG_RU, DAY_ID} from './types'
+import {FETCH_RESP, HIDE_LOADER, SHOW_LOADER, LANG_ENG, LANG_RU, DAY_ID, CITY} from './types'
+const axios = require('axios')
+
 
 export function showLoader() {
     return {
@@ -31,13 +33,19 @@ export function toggleDay(id) {
     }
 }
 
-export function fetchWeather() {
+export function toggleCity(coordinates) {
+    return {
+        type: CITY,
+        payload: coordinates
+    }
+}
+
+export function fetchWeather(coordinates) {
     return async dispatch => {
         try {
             dispatch(showLoader())
-            const response = await fetch('http://localhost:5000/weather/getWeather')
-            const json = await response.json()
-            dispatch({ type: FETCH_RESP , payload: json })
+            const response = await axios.post('http://localhost:5000/weather/getWeather', {coordinates})
+            dispatch({ type: FETCH_RESP , payload: response.data })
             dispatch(hideLoader())
         } catch(e) {
             dispatch(hideLoader())
