@@ -22,10 +22,10 @@ function App() {
 				<div className="indeterminate"/>
 			  </div> 
 			: <div className="container">
-					<CurrentWeather />
 				<div className="dayContainer">
 					<ListDay />
 				</div>
+					<CurrentWeather />
 				{	
 					!stateLoading && appState.daily 
 					? <DayWeather /> 
