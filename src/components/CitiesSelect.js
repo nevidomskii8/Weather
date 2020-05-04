@@ -2,6 +2,7 @@ import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { dataCities } from '../container/DataArrays'
 import { toggleCity } from '../redux/action'
+import { CityOption } from './CityOption'
 
 function CitiesSelect() {
 	const reducerProps = useSelector(state => state),
@@ -17,10 +18,7 @@ function CitiesSelect() {
 		<div className="input-field col s12 m6">
 			<select className="icons" onChange={selectHandler}>
 				<option defaultValue={city}>{city}</option>
-				<option value="odessa" >odessa</option>
-				<option value="kiev" >kiev</option>
-				<option value="kharkiv" >kharkov</option>
-				<option value="lviv" >lviv</option>
+				<CityOption/>
 			</select>
     	</div>
 )}

@@ -6,7 +6,6 @@ import { iconsArray } from '../container/dataImeges'
 import { useDispatch} from 'react-redux'
 import { toggleEng, toggleRu } from '../redux/action'
 import CitiesSelect from './CitiesSelect'
-// import CitiesSelect from './components/CitiesSelect'
 
 export const CurrentWeather = () => {
     const reducerProps = useSelector(state => state),
